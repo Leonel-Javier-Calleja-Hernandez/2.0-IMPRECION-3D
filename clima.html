@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CLIMAS</title>
+    <script>
+    function buscarCiudad(ciudad){
+        fetch(`https://goweather.herokuapp.com/weather/${ciudad}`)
+        .then(response => response.json())
+        .then(data => { 
+            console.log("la temperatura de " + ciudad + " es: " + data.temperature + " y su velocidad es " + data.wind);
+        if (data.temperature < '10°C'){
+            document.getElementById('temperatura').src ="https://cnnespanol.cnn.com/wp-content/uploads/2022/12/221220154109-01-cold-weather-safety.jpg?quality=100&strip=info"
+        }else{
+            document.getElementById('temperatura').src ="https://www.prosutelsistemas.net/wp-content/uploads/2021/10/El-compresor-de-aire-y-el-calor.png"
+        }})
+    .catch(error => console.error('error al obtener data:',error));
+    }
+        buscarCiudad("Bogota")
+        </script>
+
+</head>
+<body>
+    
+  <img id="temperatura" src="" alt="">
+
+</body>
+</html>
